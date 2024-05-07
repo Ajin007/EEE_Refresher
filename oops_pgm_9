@@ -1,0 +1,85 @@
+import java.io.*;
+import java.util.*;
+class Stall  {
+	private String stallName;
+	private double stallArea;
+	private String owner;
+	private double stallCost;
+	
+	public Stall(String stallName, String details, double stallArea, String owner) {
+		this.stallName = stallName;
+		this.stallArea = stallArea;
+		this.owner = owner;
+	}
+	public Stall() {
+		this.stallName = null;
+		this.stallArea = 0;
+		this.owner = null;
+	}
+	public String getStallName() {
+		return stallName;
+	}
+
+	public void setStallName(String stallName) {
+		this.stallName = stallName;
+	}
+	public double getStallArea() {
+		return stallArea;
+	}
+
+	public void setStallArea(double stallArea) {
+		this.stallArea = stallArea;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	public double getStallCost() {
+		return stallCost;
+	}
+
+	public void setStallCost(double stallCost) {
+		this.stallCost = stallCost;
+	}
+	public boolean equals(Object s) {
+		if(s == this) {
+			return true;
+		}
+		if(!(s instanceof Stall)) {
+			return false;
+		}
+		Stall ss  = (Stall) s;
+		return stallName.compareTo(ss.stallName) == 0 
+				&& Double.compare(stallArea, ss.stallArea) == 0
+						&& owner.compareTo(ss.owner) == 0
+				&& Double.compare(stallCost, ss.stallCost) == 0;
+				
+				
+	}
+}
+class Main {
+public static void main(String [] args) {
+	Scanner sc = new Scanner(System.in);
+	Stall s1 = new Stall();
+	Stall s2 = new Stall();
+	s1.setStallName(sc.nextLine());
+	s1.setStallArea(Double.parseDouble(sc.nextLine()));
+	s1.setOwner(sc.nextLine());
+	s1.setStallCost(Double.parseDouble(sc.nextLine()));
+	s2.setStallName(sc.nextLine());
+	s2.setStallArea(Double.parseDouble(sc.nextLine()));
+	s2.setOwner(sc.nextLine());
+	s2.setStallCost(Double.parseDouble(sc.nextLine()));
+	if(s1.equals(s2)) {
+		System.out.println("Stalls are same");
+	}
+	else {
+		System.out.println("Stalls are different");
+	}
+}
+}
