@@ -1,0 +1,61 @@
+##Main.java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        //System.out.print("Enter the length of the rectangle: ");
+        double length = scanner.nextDouble();
+        //System.out.print("Enter the width of the rectangle: ");
+        //double width = scanner.nextDouble();
+        //System.out.print("Enter the radius of the circle: ");
+        double radius = scanner.nextDouble();
+        Cylinder cylinder = new Cylinder(radius, length);
+        cylinder.calculateVolume();
+    }
+}
+
+##shape.java
+
+public class Shape {
+    protected double area;
+
+    public void calculateArea() {
+        System.out.println("Area is not defined.");
+    }
+
+    public double getArea() {
+        return area;
+    }
+}
+
+## circle.java
+public class Circle extends Shape {
+    protected double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    public void calculateArea() {
+        area = Math.PI * radius * radius;
+        System.out.println("Area of circle: " + area);
+    }
+}
+
+## Cylinder.java
+public class Cylinder extends Circle {
+    protected double height;
+    protected double volume;
+
+    public Cylinder(double radius, double height) {
+        super(radius);
+        this.height = height;
+    }
+
+    public void calculateVolume() {
+        super.calculateArea();
+        volume = getArea() * height;
+        System.out.println("Volume of cylinder: " + volume);
+    }
+}
