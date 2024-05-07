@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.Scanner;
+class Wall {
+    int length;
+    int height;
+
+    Wall(int len, int hgt) {
+      length = len;
+      height = hgt;
+    }
+
+    int calculateArea() {
+      return length * height;
+    }
+};
+class Main
+{
+    public static void main(String args[])
+    {
+    int l,b;
+    Scanner obj=new Scanner(System.in);
+    l=obj.nextInt();
+    b=obj.nextInt();
+    Wall wall1=new Wall(l,b);
+    l=obj.nextInt();
+    b=obj.nextInt();
+    Wall wall2=new Wall(l,b);
+    System.out.println("Area of Wall 1: "+ wall1.calculateArea());
+    System.out.println("Area of Wall 2: "+ wall2.calculateArea());
+}
+}
