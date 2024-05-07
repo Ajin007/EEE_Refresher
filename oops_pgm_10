@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Main {
+private double balance;
+
+public Main(double initialBalance) {
+    balance = initialBalance;
+}
+
+public void deposit(double amount) {
+    balance += amount;
+}
+
+public void withdraw(double amount) {
+    if (balance - amount >= 0) {
+        balance -= amount;
+    } else {
+        System.out.println("Insufficient funds");
+    }
+}
+
+public double getBalance() {
+    return balance;
+}
+
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+
+    double initialBalance = scanner.nextDouble();
+    Main account = new Main(initialBalance);
+
+    double depositAmount = scanner.nextDouble();
+    account.deposit(depositAmount);
+
+    double withdrawalAmount = scanner.nextDouble();
+    account.withdraw(withdrawalAmount);
+
+    System.out.println("Current balance: " + account.getBalance());
+}
+}
