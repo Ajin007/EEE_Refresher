@@ -1,0 +1,122 @@
+##Main.java
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        CourseList courseList = new CourseList();
+
+        while (true) {
+            /*System.out.println("\nCourse Management System\n");
+            System.out.println("1. Add course");
+            System.out.println("2. Remove course");
+            System.out.println("3. Display all courses");
+            System.out.println("4. Exit\n");
+
+            System.out.print("Enter your choice: ");*/
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    scanner.nextLine(); // Consume newline left-over
+                    //System.out.print("\nEnter course name: ");
+                    String name = scanner.nextLine();
+                    //System.out.print("Enter course code: ");
+                    int code = scanner.nextInt();
+                    String result = courseList.addCourse(name, code);
+                    System.out.println(result);
+                    break;
+                case 2:
+                    //System.out.print("\nEnter course code: ");
+                    code = scanner.nextInt();
+                    result = courseList.removeCourse(code);
+                    System.out.println(result);
+                    break;
+                case 3:
+                    courseList.displayAllCourses();
+                    break;
+                case 4:
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice. Please enter a valid choice.");
+            }
+        }
+    }
+}
+
+## Course.java
+public class Course {
+    private String name;
+    private int code;
+
+    public Course(String name, int code) {
+        this.name = name;
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String toString() {
+        return "Course code: " + code + ", Name: " + name;
+    }
+}
+
+## CourseList.java
+public class CourseList {
+    private Course[] courses = new Course[10];
+    private int count = 0;
+
+    public String addCourse(String name, int code) {
+        if (count == courses.length) {
+            return "Course list is full. Cannot add course.";
+        }
+
+        if (name.length() > 20) {
+            return "Invalid name. Please enter a name with at most 20 characters.";
+        }
+
+        if (code <= 0) {
+            return "Invalid code. Please enter a positive integer value for the course code.";
+        }
+
+        for (int i = 0; i < count; i++) {
+            if (courses[i].getCode() == code) {
+                return "Course with the given code already exists. Cannot add course.";
+            }
+        }
+
+        courses[count++] = new Course(name, code);
+        return "Course added successfully.";
+    }
+
+    public String removeCourse(int code) {
+        for (int i = 0; i < count; i++) {
+            if (courses[i].getCode() == code) {
+                for (int j = i; j < count - 1; j++) {
+                    courses[j] = courses[j + 1];
+                }
+                courses[--count] = null;
+                return "Course removed successfully.";
+            }
+        }
+        return "Course not found.";
+    }
+
+    public void displayAllCourses() {
+        if (count == 0) {
+            System.out.println("No courses to display.");
+        } else {
+            System.out.println("All courses:");
+            for (int i = 0; i < count; i++) {
+                System.out.println(courses[i].toString());
+            }
+        }
+   }
+  }
